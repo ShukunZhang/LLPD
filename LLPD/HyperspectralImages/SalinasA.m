@@ -1,7 +1,6 @@
 clear all;
 
-addpath(genpath('../../../../LLPD_Code'));
-addpath(genpath('/Users/shukunzhang/Desktop/Research/annavlittle-llpd_code-5d8ee720b9f2/'));
+addpath(genpath('../../../LLPD'));
 load('SalinasA_gt.mat');
 %X=salinasA_gt;
 %imagesc(X);
