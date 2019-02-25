@@ -1,6 +1,6 @@
 clear all;
 
-addpath(genpath('../../../LLPD'));
+addpath(genpath('../../../LLPD/'));
 load('SalinasA_gt.mat');
 %X=salinasA_gt;
 %imagesc(X);
