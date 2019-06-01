@@ -2,29 +2,23 @@ clear all;
 
 addpath(genpath('../../../LLPD/'));
 load('SalinasA_gt.mat');
-%X=salinasA_gt;
-%imagesc(X);
-%X=reshape(X,83*86,1);
-
 LabelsGT=salinasA_gt;
 
 X=load('SalinasA.mat');
 X=X.salinasA;
-%X=LabelsGT;
-%LabelsGT=reshape(LabelsGT,83*86,1);
 X=reshape(X,83*86,224);
 
 SetDefaultParameters
 
-LLPDopts.KNN = size(X,1); %Number of nearest neighbors in underlying graph
+LLPDopts.KNN = 1500; %Number of nearest neighbors in underlying graph
 LLPDopts.UseFixedNumScales = 0; %Forces a fixed number of scales in LLPD approximation
 LLPDopts.LogRatio=1.1;
 
-DenoisingOpts.Method='None';
-%DenoisingOpts.Cutoff = 10;
+DenoisingOpts.Method='Cutoff';
+DenoisingOpts.Cutoff = 300;
 SpectralOpts.SigmaScaling = 'Automatic';
-SpectralOpts.SigmaValues = linspace(1, 7, 20);
-SpectralOpts.NumEig = 7;
+SpectralOpts.SigmaValues = linspace(10, 700, 20);
+SpectralOpts.NumEig = 15;
 ComparisonOpts.RunEucSC = 0;
 ComparisonOpts.RunKmeans = 0;
 ComparisonOpts.EucSCSigmaScaling = 'Automatic'; 
