@@ -19,7 +19,11 @@ end
 
 %%  Compute eigenvectors of LLPD Laplacian, while denoising
 
-[EigVals_LLPD,EigVecs_LLPD,Idx_Retain,Sigma_LLPD] = FastEigensolverDenoising(X,LLPDopts,SpectralOpts,DenoisingOpts);
+if SpatialReg.UseReg
+    [EigVals_LLPD,EigVecs_LLPD,Idx_Retain,Sigma_LLPD] = FastEigensolverDenoisingS(X,LLPDopts,SpectralOpts,DenoisingOpts,SpatialReg);
+else
+    [EigVals_LLPD,EigVecs_LLPD,Idx_Retain,Sigma_LLPD] = FastEigensolverDenoising(X,LLPDopts,SpectralOpts,DenoisingOpts);
+end
 
 if ComparisonOpts.RunEucSC
     [EigVals_Euc,EigVecs_Euc, Sigma_Euc] = EuclideanEigensolver(X(Idx_Retain,:),LLPDopts,ComparisonOpts);
@@ -29,7 +33,7 @@ end
 
 if exist('LabelsGT')
     LabelsGT=UniqueGT(LabelsGT); 
-    K = length(unique(LabelsGT(Idx_Retain)));
+    K = length(unique(LabelsGT(Idx_Retain)))-1; % 0 is not a class!
 end
 
 %%  Compare K-means, Euclidean spectral clustering, and LLPD spectral clustering on the denoised data
@@ -109,14 +113,15 @@ if exist('LabelsGT')
      M = confusionmat(LabelsGT(Idx_Retain),Labels_LLPD_SC);
      ClusterCounts = M(any(M,2),any(M,1));
 
-    [OA_LLPD_SC,AA_LLPD_SC,Kappa_LLPD_SC]=GetAccuracies(Labels_LLPD_SC,LabelsGT(Idx_Retain),K_LLPD);
+    LabelsGT_Retained=LabelsGT(Idx_Retain);
+    [OA_LLPD_SC,AA_LLPD_SC,Kappa_LLPD_SC]=GetAccuracies(Labels_LLPD_SC(LabelsGT_Retained>0),LabelsGT_Retained(LabelsGT_Retained>0),K_LLPD);
 
     if ComparisonOpts.RunKmeans==1
-        [OA_Kmeans,AA_Kmeans,Kappa_Kmeans]=GetAccuracies(Labels_Kmeans,LabelsGT(Idx_Retain),K_LLPD);
+        [OA_Kmeans,AA_Kmeans,Kappa_Kmeans]=GetAccuracies(Labels_Kmeans(LabelsGT_Retained>0),LabelsGT_Retained(LabelsGT_Retained>0),K_LLPD);
     end
 
     if ComparisonOpts.RunEucSC==1
-        [OA_EuclideanSC,AA_EuclideanSC,Kappa_EuclideanSC]=GetAccuracies(Labels_EuclideanSC,LabelsGT(Idx_Retain),K_Euc);
+        [OA_EuclideanSC,AA_EuclideanSC,Kappa_EuclideanSC]=GetAccuracies(Labels_EuclideanSC(LabelsGT_Retained>0),LabelsGT_Retained(LabelsGT_Retained>0),K_Euc);
     end
     
 end

@@ -62,3 +62,9 @@ ComparisonOpts.EucSCNumScales = 20; %How Euclidean scales to use
 ComparisonOpts.EucSCSparsity = 'None'; %Use dense Laplacian;
 ComparisonOpts.EucSCNumReplicates=5; %How many replicates to use for K-means
 
+%% Set Spatial Regularity
+SpatialReg.UseReg = 0;
+SpatialReg.Width = 10;
+SpatialReg.Height = 10;
+SpatialReg.Sigma = 10;
+
