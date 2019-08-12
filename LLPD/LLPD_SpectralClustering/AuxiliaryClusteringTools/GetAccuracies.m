@@ -24,7 +24,8 @@ LabelsAligned=AlignClustersHungarian(GT,Labels,K);
 %% Compute classwise accuracies
 
 for k=1:K
-    ClassIdxs{k}=squeeze(find(GT==k));
+    temp=find(GT==k);
+    ClassIdxs{k}=squeeze(temp);
     ClassSize(k)=squeeze(length(ClassIdxs{k}));
     
     Assignments{k}=LabelsAligned(ClassIdxs{k});

@@ -12,8 +12,12 @@ DenoisingOpts.Cutoff = .03;
 SpectralOpts.SigmaScaling = 'Manual';
 SpectralOpts.SigmaValues = linspace(.005, .1, 20);
 
-ComparisonOpts.RunEucSC = 1;
+ComparisonOpts.RunEucSC = 0;
 ComparisonOpts.EucSCSigmaScaling = 'Manual'; 
 ComparisonOpts.EucSCSigmaValues = linspace(.02, .17, 20); 
+
+SpatialReg.UseReg=1;
+SpatialReg.Width=
+
 
 GeneralScript_LLPD_SC
