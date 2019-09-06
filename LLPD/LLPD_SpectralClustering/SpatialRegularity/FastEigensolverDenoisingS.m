@@ -122,10 +122,18 @@ end
     flag = zeros(size(Sigma));
     EigVals=zeros(NumEig,length(Sigma));
     EigVecs=zeros(size(denoisedX,1),NumEig,length(Sigma));
+    LLPD=full(LLPD);
+    LLPD(LLPD==0)=Inf;
     for i=1:length(Sigma)
         W=exp(-LLPD.^2/Sigma(i).^2);
         WS=W.*S;
-        [V_temp, D_temp, flag(i)] = eigs(WS,NumEig,'sr','SubspaceDimension',2*NumEig,'issym',1);
+        D=zeros(size(W));
+        for j=1:size(WS,1)
+            D(j,j) = sum(WS(j,:));
+        end
+        I=eye(size(W,1));
+        L_ss = I - (D^-0.5) * WS * (D^-0.5);
+        [V_temp, D_temp, flag(i)] = eigs(L_ss,NumEig,'sr','SubspaceDimension',2*NumEig,'issym',1);
         [EigVals(:,i), I] = sort(diag(D_temp), 'ascend');
          EigVecs(:,:,i) = V_temp(:,I); 
         
