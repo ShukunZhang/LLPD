@@ -1,6 +1,6 @@
 clear all;
 
-addpath(genpath('../../../LLPD/'));
+addpath(genpath('C:\Users\zhang\Desktop\LLPD-master'));
 load('SalinasA_gt.mat');
 LabelsGT=salinasA_gt;
 
@@ -15,15 +15,24 @@ LLPDopts.UseFixedNumScales = 0; %Forces a fixed number of scales in LLPD approxi
 LLPDopts.LogRatio=1.1;
 
 DenoisingOpts.Method='Cutoff';
-DenoisingOpts.Cutoff = 300;
-SpectralOpts.SigmaScaling = 'Automatic';
-SpectralOpts.SigmaValues = linspace(10, 700, 20);
-SpectralOpts.NumEig = 15;
+DenoisingOpts.Cutoff = 290;
+SpectralOpts.SigmaScaling = 'Manual';
+SpectralOpts.SigmaValues = linspace(20, 120, 20);
+SpectralOpts.NumEig = 20;
 ComparisonOpts.RunEucSC = 0;
 ComparisonOpts.RunKmeans = 0;
-ComparisonOpts.EucSCSigmaScaling = 'Automatic'; 
-ComparisonOpts.EucSCSigmaValues = linspace(1, 5, 5);
+
+
+SpatialReg.UseReg = 1;
+SpatialReg.Width = 83;
+SpatialReg.Height = 86;
+SpatialReg.Sigma = 150;
+
 
 GeneralScript_LLPD_SC;
+figure;imagesc(reshape(Labels_LLPD_SC_FullData,83,86));
 
-save(['Results',date])
+
+% SpatialReg.UseReg = 0;
+% SpectralOpts.SigmaValues = linspace(10, 700, 20);
+% GeneralScript_LLPD_SC;
