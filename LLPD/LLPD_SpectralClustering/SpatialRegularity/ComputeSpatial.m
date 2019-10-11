@@ -7,18 +7,18 @@ sigma=SpatialReg.Sigma;
     
     if SpatialReg.R == 1
         r=SpatialReg.r;
-        for e=1:w*h
-            for i=0:r
-                l1=max(e-i*w-r,1);
-                r1=min(e-i*w+r,w*h);
-                LLPD_S(e,[l1:r1])=1;
-                l2=max(e+i*w-r,1);
-                r2=min(e+i*w+r,w*h);
-                LLPD_S(e,[l2:r2])=1;
-            end
-        end
 
-    
+        for e=1:w*h
+            q=floor(e/w);
+            R=[max(mod(e,w)-r,1):min(mod(e,w)+r,w)];
+            for i=0:r
+                idx_l=max((q-i),0)*w +R;
+                idx_r=min((q+i),h)*w+R;
+                LLPD_S(e,idx_l)=1;
+                LLPD_S(e,idx_r)=1;
+        
+            end
+        end   
     else
         for m = 1:w*h
             i1 = floor((m-1)/h);
