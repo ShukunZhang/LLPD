@@ -24,9 +24,9 @@ LLPDopts.LogRatio=1.1;
 DenoisingOpts.Method='Cutoff'; %Look at figure to denoise, or set a cutoff?
 DenoisingOpts.Cutoff = 290;
 SpectralOpts.SigmaScaling = 'Manual';
-SpectralOpts.SigmaValues = linspace(10, 700, 20);
-%SpectralOpts.SigmaValues = linspace(20, 120, 20);
-SpectralOpts.NumEig = 20;
+%SpectralOpts.SigmaValues = linspace(10, 700, 5);
+SpectralOpts.SigmaValues = linspace(20, 120, 10);
+SpectralOpts.NumEig = 10;
 ComparisonOpts.RunEucSC = 0;
 ComparisonOpts.RunKmeans = 0;
 
@@ -36,9 +36,9 @@ SpatialReg.Width = 83;
 SpatialReg.Height = 86;
 SpatialReg.Sigma = 50;
 SpatialReg.R=1;
-SpatialReg.r=4;
+SpatialReg.r=80;
 
-MajorV.Use = 0;
+MajorV.Use = 1;
 MajorV.Radius = 6;
 MajorV.VoteRate = 0.7;
 MajorV.Width = 83;
@@ -48,7 +48,7 @@ GeneralScript_LLPD_SC;
 
 %save(['Results',date])
 %%
-close all;imagesc(reshape(Labels_LLPD_SC_FullData,83,86));
+figure;imagesc(reshape(Labels_LLPD_SC_FullData,83,86));
 figure; imagesc(reshape(Labels_LLPD_SC_FullData,83,86).*salinasA_gt);
 %imagesc(reshape(LabelsGT,83,86));
 %without GT, image rotated 180 degree
