@@ -99,7 +99,7 @@ end
 
 %% Recompute Connected Components Matrix on the De-noised Data
 
-% try different sigmas, LLPD differentm
+% try different sigmas, LLPD different
 % idxretain S=S(idxRetain,ideRetain);
     
     
@@ -122,17 +122,20 @@ end
     flag = zeros(size(Sigma));
     EigVals=zeros(NumEig,length(Sigma));
     EigVecs=zeros(size(denoisedX,1),NumEig,length(Sigma));
+    
     LLPD=full(LLPD);
-    LLPD(LLPD==0)=Inf;
+    LLPD(LLPD==0)=Inf; %August 29
+
+    
     for i=1:length(Sigma)
         W=exp(-LLPD.^2/Sigma(i).^2);
-        WS=W.*S;
+        W_SS=W.*S;
         D=zeros(size(W));
-        for j=1:size(WS,1)
-            D(j,j) = sum(WS(j,:));
+        for j=1:size(W_SS,1)      
+                D(j,j)=sum(W_SS(j,:));   
         end
         I=eye(size(W,1));
-        L_ss = I - (D^-0.5) * WS * (D^-0.5);
+        L_ss= I - D^(-1/2) * W_SS * D^(-1/2);
         [V_temp, D_temp, flag(i)] = eigs(L_ss,NumEig,'sr','SubspaceDimension',2*NumEig,'issym',1);
         [EigVals(:,i), I] = sort(diag(D_temp), 'ascend');
          EigVecs(:,:,i) = V_temp(:,I); 
