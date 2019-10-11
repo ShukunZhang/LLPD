@@ -104,7 +104,11 @@ if ComparisonOpts.RunKmeans==1
         title('Data Labeled by K-means','fontsize',16)
     end    
 end
-
+%%
+if MajorV.Use ==1
+    Labels_LLPD_SC_FullData_NS=Labels_LLPD_SC_FullData;
+    Labels_LLPD_SC_FullData=MajorVote(X,Labels_LLPD_SC_FullData,MajorV);
+end
 %% Get accuracies if Labels are available
 
 if exist('LabelsGT')
