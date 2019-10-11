@@ -4,7 +4,7 @@ function newLabels = MajorVote(X,L,MajorV)
     w=MajorV.Width;
     h=MajorV.Height;
    
-    figure; imagesc(reshape(L,83,86));
+
     %give each unlabeled point a label by finding the nearest neighbor's L
     unLabeled_idx = find(L==0);
     labeled_idx = find(L~=0);
