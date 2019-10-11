@@ -72,10 +72,10 @@ addpath(genpath('/Users/shukunzhang/Desktop/Research/annavlittle-llpd_code-5d8ee
 % 
 % 
 % 
-  GeneralScript_LLPD_SC
-  figure;
+  %GeneralScript_LLPD_SC
+  %figure;
   %scatter3(X(:,1),X(:,2),X(:,3),[],Labels_EuclideanSC_FullData,'filled');
   %figure;
-  scatter3(X(:,1),X(:,2),X(:,3),[],Labels_LLPD_SC_FullData,'filled');
+  %scatter3(X(:,1),X(:,2),X(:,3),[],Labels_LLPD_SC_FullData,'filled');
  % imagesc(reshape(Labels_LLPD_SC_FullData,50,50));
 %
