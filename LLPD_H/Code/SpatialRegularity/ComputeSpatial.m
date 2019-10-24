@@ -8,10 +8,11 @@ sigma=SpatialReg.Sigma;
     if SpatialReg.R == 1
         r=SpatialReg.r;
 
-        for e=1:w*h
-            q=floor(e/w);
+        for e=1:w*h %for each data point
+            q=floor(e/w); 
             R=[max(mod(e,w)-r,1):min(mod(e,w)+r,w)];
             for i=0:r
+            % add the index of points with radius = i 
                 idx_l=max((q-i),0)*w +R;
                 idx_r=min((q+i),h)*w+R;
                 LLPD_S(e,idx_l)=1;
