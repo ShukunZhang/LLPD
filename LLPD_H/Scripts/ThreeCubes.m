@@ -54,7 +54,7 @@ end
 
  
  
-addpath(genpath('/Users/shukunzhang/Desktop/Research/annavlittle-llpd_code-5d8ee720b9f2/LLPD_SpectralClustering'));
+addpath(genpath('../../LLPD_H'));
 
  SetDefaultParameters 
  DenoisingOpts.Method='None';
