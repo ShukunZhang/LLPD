@@ -68,3 +68,10 @@ SpatialReg.Width = 10;
 SpatialReg.Height = 10;
 SpatialReg.Sigma = 10;
 
+%% Set Majority Voting 
+MajorV.Use = 0;
+MajorV.Radius = 1;
+MajorV.VoteRate = 1;
+MajorV.Width = 0;
+MajorV.Height = 0;
+
