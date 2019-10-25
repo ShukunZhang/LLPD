@@ -23,8 +23,8 @@ X=vertcat(X,X,X);
 % %  
 %   X([2501:3000],3) = X([2501:3000],3)+2.4;
 
-X([1001:2000],3) = X([1001:2000],3)+1.2;
-X([2001:3000],3) = X([2001:3000],3)+2.4;
+X([1001:2000],3) = X([1001:2000],3)+2.3;
+X([2001:3000],3) = X([2001:3000],3)+3.6;
 
 
 
@@ -49,7 +49,7 @@ X([2001:3000],3) = X([2001:3000],3)+2.4;
  X=horzcat(X,ones(3000,1));
  for i=1:3
      for j=1:1000
-         X((i-1)*1000 + j,200) = i; %i/10 for not using spatial
+         X((i-1)*1000 + j,200) = i/10; %i/10 for not using spatial
      end
  end
 
@@ -62,8 +62,8 @@ X([2001:3000],3) = X([2001:3000],3)+2.4;
  
   imagesc(reshape(X(:,200),50,60));
  
-addpath(genpath('/Users/shukunzhang/Desktop/Research/annavlittle-llpd_code-5d8ee720b9f2/LLPD_SpectralClustering'));
-
+%addpath(genpath('/Users/shukunzhang/Desktop/Research/annavlittle-llpd_code-5d8ee720b9f2/LLPD_SpectralClustering'));
+addpath(genpath('../../LLPD'));
  SetDefaultParameters 
  DenoisingOpts.Method='None';
  
@@ -85,17 +85,18 @@ SpectralOpts.SigmaValues = linspace(5, 500, 2);
  MajorV.Use = 0;
 
  
- %ComparisonOpts.RunEucSC = 1;
+ ComparisonOpts.RunEucSC = 0;
  ComparisonOpts.EucSCSigmaScaling = 'Automatic'; 
 % 
 % 
 % 
 % 
   GeneralScript_LLPD_SC
+  %%
  %figure;
  % scatter3(X(:,1),X(:,2),X(:,3),[],Labels_EuclideanSC_FullData,'filled');
  % figure;
-  %figure;scatter3(X(:,1),X(:,2),X(:,3),[],Labels_LLPD_SC_FullData,'filled');
+ % figure;scatter3(X(:,1),X(:,2),X(:,3),[],Labels_LLPD_SC_FullData,'filled');
   figure; imagesc(reshape(Labels_LLPD_SC_FullData,50,60));
-  %figure; imagesc(reshape(Labels_Kmeans_FullData,50,60));
+  figure; imagesc(reshape(Labels_Kmeans_FullData,50,60));
 %
