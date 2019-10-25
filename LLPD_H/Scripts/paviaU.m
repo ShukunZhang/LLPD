@@ -27,7 +27,7 @@ LLPDopts.UseFixedNumScales = 0; %Forces a fixed number of scales in LLPD approxi
 LLPDopts.LogRatio=1.1;
 
 %DenoisingOpts.KNN = 100;
-DenoisingOpts.Method='ExamineFigure'; %Look at figure to denoise, or set a cutoff?
+DenoisingOpts.Method='Cutoff'; %Look at figure to denoise, or set a cutoff?
 DenoisingOpts.Cutoff = 750;
 SpectralOpts.SigmaScaling = 'Manual';
 SpectralOpts.SigmaValues = linspace(100, 700, 10);
