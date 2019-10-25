@@ -62,8 +62,7 @@ X([2001:3000],3) = X([2001:3000],3)+3.6;
  
   imagesc(reshape(X(:,200),50,60));
  
-%addpath(genpath('/Users/shukunzhang/Desktop/Research/annavlittle-llpd_code-5d8ee720b9f2/LLPD_SpectralClustering'));
-addpath(genpath('../../LLPD'));
+addpath(genpath('../../LLPD_H'));
  SetDefaultParameters 
  DenoisingOpts.Method='None';
  
