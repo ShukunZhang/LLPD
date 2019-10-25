@@ -18,7 +18,7 @@ clear all;
  B(:,200)=20*rand(10000,1);
 %A=zeros(100,100);
 
- addpath(genpath( 'C:\Users\zhang\Desktop\LLPD-master\LLPD-master\LLPD\LLPD_SpectralClustering'));
+ addpath(genpath( '../../LLPD_H'));
   X=B;
 SetDefaultParameters
  
