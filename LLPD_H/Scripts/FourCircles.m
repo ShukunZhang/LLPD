@@ -34,7 +34,7 @@ end;
   
   
   
-addpath(genpath( 'C:\Users\zhang\Desktop\LLPD-master\LLPD-master\LLPD\LLPD_SpectralClustering'));
+addpath(genpath( '../../LLPD_H'));
 X=A;
 SetDefaultParameters
  
