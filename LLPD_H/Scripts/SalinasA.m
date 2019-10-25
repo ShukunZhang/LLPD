@@ -1,7 +1,6 @@
 clear all;
 close all;
-addpath(genpath('../../LLPD'));
-addpath(genpath('/Users/shukunzhang/Desktop/Research/annavlittle-llpd_code-5d8ee720b9f2/LLPD_SpectralClustering/'));
+addpath(genpath('../../LLPD_H'));
 load('SalinasA_gt.mat');
 
 
