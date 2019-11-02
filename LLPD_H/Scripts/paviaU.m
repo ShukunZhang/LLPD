@@ -42,7 +42,7 @@ SpatialReg.Width = 41;
 SpatialReg.Height = 50;
 SpatialReg.Sigma = 100;
 SpatialReg.R=1;
-SpatialReg.r=15;
+SpatialReg.r=30;
 
 MajorV.Use = 1;
 MajorV.Radius = 3;
